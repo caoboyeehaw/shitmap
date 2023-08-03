@@ -91,11 +91,11 @@ export default function Home() {
         waveColor: 'violet',
         progressColor: 'purple',
         backend: 'MediaElement'
-      }) as any;  // Cast to any
+      }) as any;
   
       wavesurfer.loadBlob(equalizer.getAudioFile());
   
-      wavesurfer.on('ready', function () {
+      wavesurfer.on('waveform-ready', function () {
         console.log('wavesurfer is ready');
         console.log(wavesurfer);
         if ((wavesurfer as any).backend) { // No TypeScript error
