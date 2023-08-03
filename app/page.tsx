@@ -85,17 +85,19 @@ export default function Home() {
 
   useEffect(() => {
     if (equalizer) {
-      // Cast the WaveSurfer instance to any to suppress type checking
-      const wavesurfer = WaveSurfer.create({
+      // Cast the options object to any to suppress type checking
+      const options: any = {
         container: waveformRef.current as HTMLDivElement | string,
         waveColor: 'violet',
         progressColor: 'purple',
         backend: 'MediaElement'
-      }) as any;
+      };
+  
+      const wavesurfer = WaveSurfer.create(options);
   
       wavesurfer.loadBlob(equalizer.getAudioFile());
   
-      wavesurfer.on('waveform-ready', function () {
+      (wavesurfer as any).on('waveform-ready', function () {
         console.log('wavesurfer is ready');
         console.log(wavesurfer);
         if ((wavesurfer as any).backend) { // No TypeScript error
